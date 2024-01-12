@@ -6,12 +6,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const { topic, shop, session, admin, payload } = await authenticate.webhook(
     request
   );
-  console.log("webhook start");
   if (!admin) {
     // The admin context isn't returned if the webhook fired after a shop was uninstalled.
     throw new Response();
   }
-  console.log("webhook end");
 
   switch (topic) {
     case "APP_UNINSTALLED":
@@ -20,9 +18,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       }
 
       break;
-    case "CARTS_CREATE":
+    case "PRODUCTS_CREATE":
       break;
-    case "CARTS_UPDATE":
+    case "PRODUCTS_UPDATE":
       break;
     case "CUSTOMERS_DATA_REQUEST":
     case "CUSTOMERS_REDACT":
